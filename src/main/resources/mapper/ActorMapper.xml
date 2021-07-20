@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace+id 可以限定出一条sql语句，然后通过session.selectOne调用-->
+<mapper namespace="shao.example.webspring.mapper.ActorMapper">
+    <select id="selectActor" resultType="shao.example.webspring.entity.Actor">
+        select * from actor where actor_id=#{actorId}
+    </select>
+
+    <insert id="insertActor" flushCache="true" statementType="PREPARED" timeout="5">
+        insert into actor(first_name,last_name) values
+        (#{firstName},#{lastName})
+    </insert>
+
+    <select id="listActor" resultType="shao.example.webspring.entity.Actor">
+        select * from actor limit ${n}
+    </select>
+
+</mapper>
