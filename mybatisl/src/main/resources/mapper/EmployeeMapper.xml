@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace+id 可以限定出一条sql语句，然后通过session.selectOne调用-->
+<mapper namespace="shaol.mybatisl.mapper.EmployeeMapper">
+    <select id="selectEmployee" resultType="shaol.mybatisl.entity.Employee">
+        select * from employees where emp_no=#{empNo}
+    </select>
+
+    <insert id="insertEmployee"  flushCache="true" statementType="PREPARED" timeout="20">
+        insert into employees(emp_no,birth_date,first_name,last_name,gender,hire_date) values
+        (#{empNo},#{birthDate},#{firstName},#{lastName},#{gender},#{hireDate})
+    </insert>
+</mapper>
